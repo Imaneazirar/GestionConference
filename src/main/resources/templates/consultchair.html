@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="../static/bootstrap.min.css" th:href="@{/bootstrap.min.css}"></link>
+ <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+<style>
+.center {
+  display: block;
+  margin-left: 20%;
+  margin-right: 40%;
+  width: 100%;
+
+ 
+}
+.button {
+    position: absolute;
+    top: 86%;
+      margin-left: 35%;
+      background-color:#77B5FE;
+      color:white;
+     
+        border: none;padding: 15px 32px; text-align: center;
+        display: inline-block;
+         font-size: 13px;
+}
+</style>
+</head>
+
+
+<header>
+<div class="navbar navbar-default">
+<div class="container">
+   <div class="navbar-header">
+                    <a class="navbar-brand">Reviewer </a>
+                </div>
+
+     <ul class="nav navbar-nav">
+      <li><a th:href="@{chercherArticle}">Chercher Article</a></li>
+         <li><a th:href="@{viewArticlelist}">Articles</a></li>
+
+     </ul>
+</div>
+</div>
+
+</header>
+<body>
+
+<div layout:fragment="content"  class="center">
+ <div class="col-md-6">
+   <div class="panel panel-primary">
+   <div class="bg-info" style="text-align:center">Effectuer  l'Article</div>
+   <div class="panel-body">
+<form  th:action="@{addNote}" th:object="${chairDto}" method="post">
+
+<table class="form-group">
+<tr><td  >id </td> <td> <input class="form-control" id="idChair" disabled="disabled" type="text" th:field="*{idChair}"/>
+</td> </tr> 
+<tr><td><label></label></td></tr>
+
+<tr><td>name </td>
+ <td> 
+ <input  class="form-control" id="name" rows="5" cols="60" th:field="*{name}"  disabled="disabled" />
+ </td>       </tr><br/>
+ <br/>
+ <tr><td><label></label></td></tr>
+ 
+<tr><td> choisir un article </td>
+ <td>  <select class="form-control"  id="idArticle" th:field="*{idArticle}">
+        <option value="">Selectioner un article</option>
+        <option th:each="article : ${articles}"
+                th:value="${article.IdArticle}"
+                th:text="${article.IdArticle}+' : '+${article.Titre}"></option>
+    </select>
+</td></tr>
+<tr><td><label></label></td></tr>
+
+<tr><td>note </td>
+ <td> 
+ <input  class="form-control" id="note" rows="5" cols="60" th:field="*{note}" />
+ </td>       </tr>
+<tr><td><label></label></td></tr>
+<tr><td><label></label></td></tr>
+
+<tr><td><input type="submit" value="add" class="button"/> </td></tr>
+</table>
+</form></div></div></div></div>
+
+
+
+</body>
+</html>
